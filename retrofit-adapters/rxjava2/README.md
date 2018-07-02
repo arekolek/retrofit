@@ -11,6 +11,16 @@ Available types:
  * `Maybe<T>`, `Maybe<Response<T>>`, and `Maybe<Result<T>>`  where `T` is the body type.
  * `Completable` where response bodies are discarded.
 
+The three configurations supported for the `Observable`, `Flowable`, `Single`
+and `Maybe` type parameter are:
+
+ * Direct-body calls `onNext` with the deserialized body
+   for 2XX responses and calls `onError` with `HttpException` for non-2XX responses and `IOException` 
+   for network errors.
+ * `Response`-wrapped body calls `onNext` with a `Response` object
+   for all HTTP responses and calls `onError` with `IOException` for network errors
+ * `Result`-wrapped body calls `onNext` with a `Result` object
+   for all HTTP responses and errors.
 
 Usage
 -----
